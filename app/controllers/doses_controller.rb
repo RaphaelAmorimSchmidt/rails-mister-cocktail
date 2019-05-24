@@ -8,13 +8,14 @@ class DosesController < ApplicationController
 
   def create
     @cocktail = Cocktail.find(params[:cocktail_id])
-    @dose = Dose.new(dose_params)
-    @dose.cocktail = @cocktail
-    if @dose.save
-      redirect_to @cocktail, notice: 'Dose was successfully created.'
-    else
-      render :new
+    ingredients = params[:dose][:ingredient]
+    ingredients.each do |ingredient|
+      @dose = Dose.new(dose_params)
+      @dose.ingredient = Ingredient.find(ingredient)
+      @dose.cocktail = @cocktail
+      @dose.save
     end
+    redirect_to @cocktail
   end
 
   def edit
@@ -42,6 +43,6 @@ class DosesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
   def dose_params
-      params.require(:dose).permit(:description, :ingredient_id)
+      params.require(:dose).permit(:description)
     end
 end
