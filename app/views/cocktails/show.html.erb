@@ -1,11 +1,14 @@
-<h1>Show cocktail</h1>
-<%= @cocktail.name %>
-<ul>
-<% @cocktail.doses.each do |dose| %>
-  <li><%= dose.description %><%= dose.ingredient.name %><%= link_to "Edit", edit_dose_path(dose) %></li>
-<% end %>
-</ul>
-<%= link_to "New dose", new_cocktail_dose_path(@cocktail) %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+  <div class="container">
+
+    <h1><%= @cocktail.name %></h1>
+    <% @cocktail.doses.each do |dose| %>
+      <p class="mb-0"><%= dose.description %><%= dose.ingredient.name %><%= link_to "Edit", edit_dose_path(dose) %></p>
+    <% end %>
+    <%= link_to "New dose", new_cocktail_dose_path(@cocktail), class: "btn btn-primary" %>
+  </div>
+</div>
+
 <%= link_to "Edit", edit_cocktail_path(@cocktail) %>
 <%= link_to "Delete", cocktail_path(@cocktail), method: :delete, data: { confirm: 'Are you sure?' }%>
 <%= link_to "Back", cocktails_path %>
