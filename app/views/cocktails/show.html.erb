@@ -6,7 +6,7 @@
       <%= link_to cocktail_path(@cocktail), method: :delete, data: { confirm: 'Are you sure?' },class: "mx-3" do %>
         <i class="fas fa-trash"></i>
       <% end %>
-      <%= link_to cocktails_path do %>
+      <%= link_to edit_cocktail_path(@cocktail) do %>
         <i class="far fa-edit"></i>
       <% end %>
     </div>
